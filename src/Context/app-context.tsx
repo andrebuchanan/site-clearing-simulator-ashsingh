@@ -2,11 +2,12 @@ import React, { ReactNode, useMemo, useState } from 'react'
 
 interface AppContextInterface {
   loggedCommands: string[]
-  logCommands?: (command: string) => void
+  logCommand: (command: string) => void
 }
 
 export const AppContext = React.createContext<AppContextInterface>({
-  loggedCommands: []
+  loggedCommands: [],
+  logCommand: () => undefined
 })
 
 export const AppContextProvider = ({ children }: { children: ReactNode }) => {
@@ -17,8 +18,8 @@ export const AppContextProvider = ({ children }: { children: ReactNode }) => {
   }
 
   const contextValue = useMemo(
-    () => ({ loggedCommands: commands, logCommands: logCommandHandler }),
-    []
+    () => ({ loggedCommands: commands, logCommand: logCommandHandler }),
+    [commands]
   )
 
   return (

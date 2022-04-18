@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import uniqid from 'uniqid'
 
 import { styled } from '@mui/material/styles'
@@ -10,6 +10,8 @@ import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
+
+import { AppContext } from '../../Context'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',
@@ -46,14 +48,13 @@ export type SiteMapProps = {
 }
 
 export const SiteMap = ({ data }: SiteMapProps) => {
-  const [begin, setBegin] = React.useState(true)
-  const [active, setActive] = React.useState({ row: -1, column: 0 })
-  const [direction, setDirection] = React.useState(Direction.Right)
+  const { logCommand } = useContext(AppContext)
 
-  console.log('active', active.row, active.column)
-  console.log('direction', direction)
+  const [begin, setBegin] = useState(true)
+  const [active, setActive] = useState({ row: -1, column: 0 })
+  const [direction, setDirection] = useState(Direction.Right)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const { row, column } = active
     if (!begin && (data[row] || [])[column] === undefined) {
       alert('Quit')
@@ -69,6 +70,7 @@ export const SiteMap = ({ data }: SiteMapProps) => {
       ...prevState,
       row: 0
     }))
+    logCommand('Advance: Bulldozer goes Right.')
     setDirection(Direction.Right)
     setBegin(false)
   }
@@ -105,10 +107,14 @@ export const SiteMap = ({ data }: SiteMapProps) => {
         break
       default:
     }
+
+    logCommand(`Advance: Bulldozer goes ${direction}`)
+
     return undefined
   }
 
   const goLeft = () => {
+    let message = 'Left: Bulldozer goes '
     switch (direction) {
       case Direction.Down:
         setActive((prevState) => ({
@@ -116,6 +122,7 @@ export const SiteMap = ({ data }: SiteMapProps) => {
           column: prevState.column + 1
         }))
         setDirection(Direction.Right)
+        message += Direction.Right
         break
       case Direction.Left:
         setActive((prevState) => ({
@@ -123,6 +130,7 @@ export const SiteMap = ({ data }: SiteMapProps) => {
           row: prevState.row + 1
         }))
         setDirection(Direction.Down)
+        message += Direction.Down
         break
       case Direction.Right:
         setActive((prevState) => ({
@@ -130,6 +138,7 @@ export const SiteMap = ({ data }: SiteMapProps) => {
           row: prevState.row - 1
         }))
         setDirection(Direction.Up)
+        message += Direction.Up
         break
       case Direction.Up:
         setActive((prevState) => ({
@@ -137,13 +146,15 @@ export const SiteMap = ({ data }: SiteMapProps) => {
           column: prevState.column - 1
         }))
         setDirection(Direction.Left)
+        message += Direction.Left
         break
       default:
     }
+    logCommand(message)
   }
 
   const goRight = () => {
-    console.log('right', active)
+    let message = 'Right: Bulldozer goes '
     switch (direction) {
       case Direction.Down:
         setActive((prevState) => ({
@@ -151,6 +162,7 @@ export const SiteMap = ({ data }: SiteMapProps) => {
           column: prevState.column - 1
         }))
         setDirection(Direction.Left)
+        message += Direction.Left
         break
       case Direction.Left:
         setActive((prevState) => ({
@@ -158,6 +170,7 @@ export const SiteMap = ({ data }: SiteMapProps) => {
           row: prevState.row - 1
         }))
         setDirection(Direction.Up)
+        message += Direction.Up
         break
       case Direction.Right:
         setActive((prevState) => ({
@@ -165,6 +178,7 @@ export const SiteMap = ({ data }: SiteMapProps) => {
           row: prevState.row + 1
         }))
         setDirection(Direction.Down)
+        message += Direction.Down
         break
       case Direction.Up:
         setActive((prevState) => ({
@@ -172,9 +186,11 @@ export const SiteMap = ({ data }: SiteMapProps) => {
           column: prevState.column + 1
         }))
         setDirection(Direction.Right)
+        message += Direction.Right
         break
       default:
     }
+    logCommand(message)
   }
 
   for (let i = 0; i < data.length; i += 1) {
