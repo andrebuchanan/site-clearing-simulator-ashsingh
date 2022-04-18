@@ -45,7 +45,7 @@ export type SiteMapProps = {
   data: string[][]
 }
 
-export function SiteMap({ data }: SiteMapProps) {
+export const SiteMap = ({ data }: SiteMapProps) => {
   const [begin, setBegin] = React.useState(true)
   const [active, setActive] = React.useState({ row: -1, column: 0 })
   const [direction, setDirection] = React.useState(Direction.Right)

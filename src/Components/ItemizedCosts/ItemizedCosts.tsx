@@ -1,7 +1,7 @@
 import React from 'react'
 import Typography from '@mui/material/Typography'
 
-export function ItemizedCosts() {
+export const ItemizedCosts = () => {
   return (
     <>
       <Typography variant="h6" component="div" gutterBottom>

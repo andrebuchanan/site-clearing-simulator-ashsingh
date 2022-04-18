@@ -8,6 +8,8 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 
+import { AppContextProvider } from './Context'
+
 import { ItemizedCosts, ProcessedCommands, SiteMap } from './Components'
 
 const data = [
@@ -18,26 +20,28 @@ const data = [
   ['r', 'r', 'r', 'r', 'r', 't', 'o', 'o', 'o', 'o']
 ]
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Box sx={{ flexGrow: 1 }}>
-        <Typography variant="h3" component="div" gutterBottom>
-          Clear Site
-        </Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={3}>
-            <ProcessedCommands />
+    <AppContextProvider>
+      <div className="App">
+        <Box sx={{ flexGrow: 1 }}>
+          <Typography variant="h3" component="div" gutterBottom>
+            Clear Site
+          </Typography>
+          <Grid container spacing={2}>
+            <Grid item xs={3}>
+              <ProcessedCommands />
+            </Grid>
+            <Grid item xs={6}>
+              <SiteMap data={data} />
+            </Grid>
+            <Grid item xs={3}>
+              <ItemizedCosts />
+            </Grid>
           </Grid>
-          <Grid item xs={6}>
-            <SiteMap data={data} />
-          </Grid>
-          <Grid item xs={3}>
-            <ItemizedCosts />
-          </Grid>
-        </Grid>
-      </Box>
-    </div>
+        </Box>
+      </div>
+    </AppContextProvider>
   )
 }
 
