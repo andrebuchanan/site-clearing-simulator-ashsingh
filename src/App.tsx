@@ -14,6 +14,7 @@ import { AppContext, AppContextProvider } from './Context'
 import {
   ItemizedCosts,
   ProcessedCommands,
+  QuitDialog,
   SiteMap,
   SiteMapInput,
   TotalCost
@@ -52,6 +53,7 @@ const App = () => {
                 </Grid>
               </Box>
             </Box>
+            <QuitDialog />
           </div>
         )}
       </AppContext.Consumer>
