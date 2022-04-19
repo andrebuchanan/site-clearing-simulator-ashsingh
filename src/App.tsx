@@ -5,6 +5,7 @@ import '@fontsource/roboto/700.css'
 import React from 'react'
 
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 
@@ -14,7 +15,8 @@ import {
   ItemizedCosts,
   ProcessedCommands,
   SiteMap,
-  SiteMapInput
+  SiteMapInput,
+  TotalCost
 } from './Components'
 
 const App = () => {
@@ -39,6 +41,16 @@ const App = () => {
                   <ItemizedCosts />
                 </Grid>
               </Grid>
+              <Box sx={{ flexGrow: 1 }}>
+                <Grid container spacing={2}>
+                  <Grid item xs={6}>
+                    <TotalCost />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Button variant="contained">Quit</Button>
+                  </Grid>
+                </Grid>
+              </Box>
             </Box>
           </div>
         )}

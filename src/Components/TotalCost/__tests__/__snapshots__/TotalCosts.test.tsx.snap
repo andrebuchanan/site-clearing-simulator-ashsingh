@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders TotalCost 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom css-18k87ye-MuiTypography-root"
+  >
+    Total Cost: 9 Credits
+  </div>
+</DocumentFragment>
+`;
