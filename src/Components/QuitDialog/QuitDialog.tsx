@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
@@ -10,6 +11,7 @@ import { AppContext } from '../../Context'
 export const QuitDialog = () => {
   const { sessionState, updateSession } = useContext(AppContext)
   const [open, setOpen] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (sessionState.quit) {
@@ -20,6 +22,7 @@ export const QuitDialog = () => {
 
   const handleClose = () => {
     setOpen(false)
+    navigate('/results')
   }
 
   return (

@@ -2,61 +2,25 @@ import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
+
 import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
+import { AppContextProvider } from './Context'
 
-import { AppContext, AppContextProvider } from './Context'
+import { Home, SitemapResults, SitemapView } from './PageTemplates'
 
-import {
-  ItemizedCosts,
-  ProcessedCommands,
-  QuitDialog,
-  SiteMap,
-  SiteMapInput,
-  TotalCost
-} from './Components'
+import { QuitDialog } from './Components'
 
 const App = () => {
   return (
     <AppContextProvider>
-      <AppContext.Consumer>
-        {({ siteData }) => (
-          <div className="App">
-            <Box sx={{ flexGrow: 1 }}>
-              <Typography variant="h3" component="div" gutterBottom>
-                Clear Site
-              </Typography>
-              <SiteMapInput />
-              <Grid container spacing={2}>
-                <Grid item xs={3}>
-                  <ProcessedCommands />
-                </Grid>
-                <Grid item xs={6}>
-                  {siteData.length ? <SiteMap /> : 'Upload Sitemap.'}
-                </Grid>
-                <Grid item xs={3}>
-                  <ItemizedCosts />
-                </Grid>
-              </Grid>
-              <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                  <Grid item xs={6}>
-                    <TotalCost />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Button variant="contained">Quit</Button>
-                  </Grid>
-                </Grid>
-              </Box>
-            </Box>
-            <QuitDialog />
-          </div>
-        )}
-      </AppContext.Consumer>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="results" element={<SitemapResults />} />
+        <Route path="sitemap" element={<SitemapView />} />
+      </Routes>
+      <QuitDialog />
     </AppContextProvider>
   )
 }

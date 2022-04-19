@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -16,8 +17,11 @@ const data = [
 
 const SiteMapInput = () => {
   const { saveSiteData } = useContext(AppContext)
+  const navigate = useNavigate()
+
   const saveData = () => {
     saveSiteData(data)
+    navigate('/sitemap')
   }
 
   return (
