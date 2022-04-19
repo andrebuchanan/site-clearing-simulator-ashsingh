@@ -46,6 +46,7 @@ const bulldozer = (direction: string) => {
 export const SiteMap = () => {
   const {
     logCommand,
+    saveSiteData,
     sessionState,
     siteData: data,
     updateSession
@@ -91,9 +92,12 @@ export const SiteMap = () => {
     const { row, column } = active
     switch (data[row][column]) {
       case 'r':
-      case 't':
-        data[row][column] = 'o'
+      case 't': {
+        const changedData = [...data]
+        changedData[row][column] = 'o'
+        saveSiteData(changedData)
         break
+      }
       case 'T':
         // quit
         quit()
