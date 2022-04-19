@@ -49,6 +49,7 @@ export const SiteMap = () => {
     saveSiteData,
     sessionState,
     siteData: data,
+    updateCost,
     updateSession
   } = useContext(AppContext)
 
@@ -96,13 +97,16 @@ export const SiteMap = () => {
         const changedData = [...data]
         changedData[row][column] = 'o'
         saveSiteData(changedData)
+        updateCost(2)
         break
       }
       case 'T':
         // quit
         quit()
         break
-      default:
+      default: {
+        updateCost(1)
+      }
     }
     return undefined
   }
