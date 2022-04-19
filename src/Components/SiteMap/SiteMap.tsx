@@ -43,27 +43,80 @@ const bulldozer = (direction: string) => {
   }
 }
 
-export type SiteMapProps = {
-  data: string[][]
-}
+export const SiteMap = () => {
+  const {
+    logCommand,
+    sessionState,
+    siteData: data,
+    updateSession
+  } = useContext(AppContext)
 
-export const SiteMap = ({ data }: SiteMapProps) => {
-  const { logCommand } = useContext(AppContext)
-
-  const [begin, setBegin] = useState(true)
   const [active, setActive] = useState({ row: -1, column: 0 })
   const [direction, setDirection] = useState(Direction.Right)
 
+  const gridElement = () => {
+    const grid = []
+
+    for (let i = 0; i < data.length; i += 1) {
+      for (let j = 0; j < data[0].length; j += 1) {
+        grid.push(
+          <Grid item xs={1} key={uniqid()}>
+            <Item
+              sx={{
+                backgroundColor:
+                  active.row === i && active.column === j ? 'green' : '#fff'
+              }}
+            >
+              <>
+                {data[i][j]}
+                {active.row === i && active.column === j
+                  ? bulldozer(direction)
+                  : bulldozer('default')}
+              </>
+            </Item>
+          </Grid>
+        )
+      }
+    }
+
+    return grid
+  }
+
+  const quit = () => {
+    updateSession({ init: true, quit: true })
+    setActive({ row: -1, column: 0 })
+  }
+
+  const updateTerrain = () => {
+    const { row, column } = active
+    switch (data[row][column]) {
+      case 'r':
+      case 't':
+        data[row][column] = 'o'
+        break
+      case 'T':
+        // quit
+        quit()
+        break
+      default:
+    }
+    return undefined
+  }
+
   useEffect(() => {
     const { row, column } = active
-    if (!begin && (data[row] || [])[column] === undefined) {
-      alert('Quit')
-      setActive({ row: -1, column: 0 })
-      setBegin(true)
+    const { init } = sessionState
+    if (!init) {
+      if ((data[row] || [])[column] === undefined) {
+        quit()
+      } else {
+        // Update Land
+        updateTerrain()
+      }
+      // Update Fuel
+      // Update Cost
     }
   }, [active])
-
-  const grid = []
 
   const enterSite = () => {
     setActive((prevState) => ({
@@ -72,11 +125,11 @@ export const SiteMap = ({ data }: SiteMapProps) => {
     }))
     logCommand('Advance: Bulldozer goes Right.')
     setDirection(Direction.Right)
-    setBegin(false)
+    updateSession({ ...sessionState, init: false })
   }
 
   const goAdvance = () => {
-    if (begin) {
+    if (sessionState.init) {
       return enterSite()
     }
 
@@ -193,28 +246,6 @@ export const SiteMap = ({ data }: SiteMapProps) => {
     logCommand(message)
   }
 
-  for (let i = 0; i < data.length; i += 1) {
-    for (let j = 0; j < data[0].length; j += 1) {
-      grid.push(
-        <Grid item xs={1} key={uniqid()}>
-          <Item
-            sx={{
-              backgroundColor:
-                active.row === i && active.column === j ? 'green' : '#fff'
-            }}
-          >
-            <>
-              {data[i][j]}
-              {active.row === i && active.column === j
-                ? bulldozer(direction)
-                : bulldozer('default')}
-            </>
-          </Item>
-        </Grid>
-      )
-    }
-  }
-
   return (
     <Box sx={{ width: '100%' }}>
       <Grid
@@ -223,11 +254,11 @@ export const SiteMap = ({ data }: SiteMapProps) => {
         columnSpacing={{ xs: 1, sm: 2, md: 3 }}
         columns={data[0].length}
       >
-        {grid}
+        {gridElement()}
       </Grid>
       <Button
         data-testid="go-left"
-        disabled={begin}
+        disabled={sessionState.init}
         variant="contained"
         onClick={goLeft}
       >
@@ -238,7 +269,7 @@ export const SiteMap = ({ data }: SiteMapProps) => {
       </Button>
       <Button
         data-testid="go-right"
-        disabled={begin}
+        disabled={sessionState.init}
         variant="contained"
         onClick={goRight}
       >
