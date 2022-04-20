@@ -29,10 +29,10 @@ export const SitemapView = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid item xs={3}>
+        <Grid item xs={2}>
           <ProcessedCommands />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={8}>
           {siteData.length ? (
             <SiteMap />
           ) : (
@@ -41,7 +41,7 @@ export const SitemapView = () => {
             </Button>
           )}
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2}>
           <ItemizedCosts />
         </Grid>
       </Grid>

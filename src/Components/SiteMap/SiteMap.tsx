@@ -18,7 +18,9 @@ const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
-  color: theme.palette.text.secondary
+  color: theme.palette.text.secondary,
+  height: 40,
+  width: 40
 }))
 
 enum Direction {
@@ -121,8 +123,6 @@ export const SiteMap = () => {
         // Update Land
         updateTerrain()
       }
-      // Update Fuel
-      // Update Cost
     }
   }, [active])
 
