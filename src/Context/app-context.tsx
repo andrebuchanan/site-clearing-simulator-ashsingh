@@ -11,6 +11,9 @@ interface AppContextInterface {
   loggedCommands: string[]
   sessionState: Session
   siteData: string[][]
+  clearCommands: () => void
+  clearCosts: () => void
+  clearSiteData: () => void
   logCommand: (command: string) => void
   saveSiteData: (data: string[][]) => void
   updateCost: (price: number) => void
@@ -24,6 +27,9 @@ export const AppContext = React.createContext<AppContextInterface>({
   loggedCommands: [],
   sessionState: { init: true, quit: false },
   siteData: [],
+  clearCommands: () => undefined,
+  clearCosts: () => undefined,
+  clearSiteData: () => undefined,
   logCommand: () => undefined,
   saveSiteData: () => undefined,
   updateCost: () => undefined,
@@ -37,6 +43,12 @@ export const AppContextProvider = ({ children }: { children: ReactNode }) => {
   const [fuel, setFuel] = useState<number[]>([])
   const [session, setSession] = useState<Session>({ init: true, quit: false })
   const [siteInput, setSiteInput] = useState<string[][]>([])
+
+  const clearCommandsHandler = () => setCommands([])
+
+  const clearCostsHandler = () => setCost([])
+
+  const clearSiteDataHandler = () => setSiteInput([])
 
   const logCommandHandler = (command: string) => {
     setCommands((prevState) => [...prevState, command])
@@ -55,8 +67,6 @@ export const AppContextProvider = ({ children }: { children: ReactNode }) => {
   }
 
   const updateSessionHandler = (sessionProp: Session) => {
-    console.log('session', sessionProp)
-    if (sessionProp.quit) console.log('quit')
     setSession(sessionProp)
   }
 
@@ -67,6 +77,9 @@ export const AppContextProvider = ({ children }: { children: ReactNode }) => {
       loggedCommands: commands,
       sessionState: session,
       siteData: siteInput,
+      clearCommands: clearCommandsHandler,
+      clearCosts: clearCostsHandler,
+      clearSiteData: clearSiteDataHandler,
       logCommand: logCommandHandler,
       saveSiteData: saveSiteDataHandler,
       updateCost: updateCostHandler,

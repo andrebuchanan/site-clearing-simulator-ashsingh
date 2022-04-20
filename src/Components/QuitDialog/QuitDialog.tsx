@@ -9,14 +9,13 @@ import DialogContentText from '@mui/material/DialogContentText'
 import { AppContext } from '../../Context'
 
 export const QuitDialog = () => {
-  const { sessionState, updateSession } = useContext(AppContext)
+  const { sessionState } = useContext(AppContext)
   const [open, setOpen] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
     if (sessionState.quit) {
       setOpen(true)
-      updateSession({ ...sessionState, quit: false })
     }
   }, [sessionState])
 

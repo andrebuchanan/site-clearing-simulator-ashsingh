@@ -14,8 +14,18 @@ import {
 } from '../Components'
 
 export const SitemapView = () => {
-  const { siteData } = useContext(AppContext)
+  const { siteData, sessionState, updateSession } = useContext(AppContext)
   const navigate = useNavigate()
+
+  React.useEffect(() => {
+    if (sessionState.quit) updateSession({ init: true, quit: true })
+  }, [])
+
+  const handleQuit = () => {
+    updateSession({ init: true, quit: true })
+    navigate('/results')
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
@@ -41,7 +51,7 @@ export const SitemapView = () => {
             <TotalCost />
           </Grid>
           <Grid item xs={6}>
-            <Button variant="contained" onClick={() => navigate('/results')}>
+            <Button variant="contained" onClick={handleQuit}>
               Quit
             </Button>
           </Grid>
