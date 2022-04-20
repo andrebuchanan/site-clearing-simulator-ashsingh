@@ -7,35 +7,49 @@ exports[`renders App 1`] = `
   >
     Processed Commands
   </div>
-  <ul
-    class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
+  <div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-10yg8so-MuiPaper-root"
   >
-    <li
-      class="MuiListItem-root MuiListItem-gutters css-1nxmd3h-MuiListItem-root"
+    <ul
+      class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
     >
       <div
-        class="MuiListItemText-root css-tlelie-MuiListItemText-root"
+        class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiListItem-divider MuiListItem-button css-1ghby9w-MuiButtonBase-root-MuiListItem-root"
+        role="button"
+        tabindex="0"
       >
-        <span
-          class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+        <div
+          class="MuiListItemText-root css-tlelie-MuiListItemText-root"
         >
-          ash
-        </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+          >
+            ash
+          </span>
+        </div>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
       </div>
-    </li>
-    <li
-      class="MuiListItem-root MuiListItem-gutters css-1nxmd3h-MuiListItem-root"
-    >
       <div
-        class="MuiListItemText-root css-tlelie-MuiListItemText-root"
+        class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiListItem-divider MuiListItem-button css-1ghby9w-MuiButtonBase-root-MuiListItem-root"
+        role="button"
+        tabindex="0"
       >
-        <span
-          class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+        <div
+          class="MuiListItemText-root css-tlelie-MuiListItemText-root"
         >
-          wini
-        </span>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+          >
+            wini
+          </span>
+        </div>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
       </div>
-    </li>
-  </ul>
+    </ul>
+  </div>
 </DocumentFragment>
 `;
