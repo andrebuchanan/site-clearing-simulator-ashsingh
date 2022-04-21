@@ -28,6 +28,23 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `yarn lint`
+
+Runs eslint on the files.
+
+### Tech/Framework used
+
+1. React
+1. TypeScript
+1. MaterialUI
+1. React-Router
+1. ESLint 5Jest
+
+### Design System **Material UI**
+
+This application is built using UI Components for Material UI v5.6.1.
+More information can be found [here](https://mui.com/material-ui/).
+
 ## Learn more about Create React App below
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
