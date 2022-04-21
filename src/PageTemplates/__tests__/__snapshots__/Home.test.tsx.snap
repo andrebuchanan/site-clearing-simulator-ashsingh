@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders App 1`] = `
+exports[`renders Home 1`] = `
 <DocumentFragment>
   <div
     class="MuiBox-root css-i9gxme"

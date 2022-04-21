@@ -10,14 +10,6 @@ import { AppContext } from '../../Context'
 
 import { InvalidFileDialog } from '..'
 
-// const data = [
-//   ['o', 'o', 't', 'o', 'o', 'o', 'o', 'o', 'o', 'o'],
-//   ['o', 'o', 't', 'o', 'o', 'o', 'o', 'T', 'o', 'o'],
-//   ['r', 'r', 'r', 'o', 'o', 'o', 't', 'T', 'o', 'o'],
-//   ['r', 'r', 'r', 'r', 'o', 'o', 'o', 'o', 'o', 'o'],
-//   ['r', 'r', 'r', 'r', 'r', 't', 'o', 'o', 'o', 'o']
-// ]
-
 const SiteMapInput = () => {
   const { saveSiteData } = useContext(AppContext)
   const [fileInput, setFileInput] = useState<string[][]>([])
@@ -41,7 +33,6 @@ const SiteMapInput = () => {
     event.preventDefault()
     const files = event.target.files || []
     const file = files[0]
-
     // return if not text file
     if (!file || file.type !== 'text/plain') return setInvalid(true)
 
@@ -74,6 +65,7 @@ const SiteMapInput = () => {
           <label htmlFor="contained-button-file">
             <Input
               id="contained-button-file"
+              data-testid="contained-button-file"
               type="file"
               onChange={handleFileInput}
             />
@@ -81,9 +73,6 @@ const SiteMapInput = () => {
               Upload
             </Button>
           </label>
-          {/* <Button variant="contained" onClick={saveData}>
-            Load Sitemap
-          </Button> */}
         </Grid>
       </Grid>
       <InvalidFileDialog

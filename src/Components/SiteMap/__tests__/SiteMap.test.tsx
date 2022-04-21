@@ -9,15 +9,11 @@ import SiteMap from '../SiteMap'
 import mocks from '../__mocks__/test.mock'
 
 const contextValue = {
-  fuelConsumed: [],
-  itemizedCosts: [],
-  loggedCommands: [],
   sessionState: { init: true, quit: false },
   siteData: mocks,
   logCommand: jest.fn,
   saveSiteData: jest.fn,
   updateCost: jest.fn,
-  updateFuel: jest.fn,
   updateSession: jest.fn
 }
 

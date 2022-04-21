@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders SiteMapInput 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-i9gxme"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+      >
+        <label
+          for="contained-button-file"
+        >
+          <input
+            class="css-1hyfx7x"
+            data-testid="contained-button-file"
+            id="contained-button-file"
+            type="file"
+          />
+          <span
+            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-sghohy-MuiButtonBase-root-MuiButton-root"
+            role="button"
+            tabindex="0"
+          >
+            Upload
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </span>
+        </label>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
