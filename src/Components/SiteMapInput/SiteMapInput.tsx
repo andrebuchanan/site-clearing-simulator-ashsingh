@@ -5,6 +5,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import { styled } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
 
 import { AppContext } from '../../Context'
 
@@ -61,7 +62,12 @@ const SiteMapInput = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid item xs={4}>
+          <Typography variant="h6" component="div" gutterBottom>
+            Upload a sitemap to begin session.
+          </Typography>
+        </Grid>
+        <Grid item xs={4}>
           <label htmlFor="contained-button-file">
             <Input
               id="contained-button-file"
